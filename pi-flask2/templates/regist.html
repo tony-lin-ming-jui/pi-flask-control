@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %}註冊{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{url_for('static',filename='css/regist.css')}}">
+{% endblock %}
+
+{% block main %}
+
+<form action="" method="POST">
+		{{ form.csrf_token }}
+		<div class="form-container">
+		<h1 class= "page-title">註冊</h1>
+			<div class="form-group">		
+				{{form.name.label}}
+				{{ form.name(class="form-control",placeholder="請輸入用戶名") }}
+				<!--input type = "text" class="form-control" placeholder="請輸入用戶名" name="name"-->
+				{% for error in form.name.errors %}
+				<li style="color:red;">{{ error }}</li>
+				{% endfor %}
+			</div>
+			
+			<div class="form-group">
+				{{form.password1.label}}
+				<!--input type = "password" class="form-control" placeholder="請輸入密碼" name="password1"-->
+				{{ form.password1(class="form-control",placeholder="請輸入密碼") }}
+				{% for error in form.password1.errors %}
+				<li style="color:red;">{{ error }}</li>
+				{% endfor %}
+			</div>
+			<div class="form-group">
+				{{form.password2.label}}
+				<!--input type = "password" class="form-control" placeholder="請輸入密碼" name="password2"-->
+				{{ form.password2(class="form-control",placeholder="請確認密碼") }}
+				{% for error in form.password2.errors %}
+				<li style="color:red;">{{ error }}</li>
+				{% endfor %}
+			</div>
+
+			<div class="form-group">
+			{% for message in get_flashed_messages() %}  
+			<li style="color:red;">{{ message }}</li>  
+			{% endfor %}  
+			</div>
+				
+				
+				
+			<div class="form-group">
+					<!--<div class="col-sm-offset-2 col-sm-10">-->
+			
+						{{form.submit(class="btn btn-primary btn-lg btn-block")}}
+			</div>
+		</div>
+	</form>
+{% endblock %}

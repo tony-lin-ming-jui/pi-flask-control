@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}pm2.5查詢{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{url_for('static',filename='css/time.css')}}">
+{% endblock %}
+
+{% block main %}
+	<form action="{{ url_for('times') }}"method="POST">
+			{{ form.csrf_token }}
+		<div class="form-container">
+			<h1 class= "page-title">pm2.5時間查詢</h1>
+			<hr/>
+
+				<div class="form-group">
+					{{form.entrydate1.label}}
+					{{ form.entrydate1 (placeholder="2018-07-10 10:00:00")}}
+					{% for error in form.entrydate1.errors %}
+					<li style="color:red;">{{ error }}</li>
+					{% endfor %}
+				</div>
+
+				<div class="form-group">
+					{{form.entrydate2.label}}
+					{{ form.entrydate2 (placeholder="2018-07-10 10:05:00")}}
+					{% for error in form.entrydate2.errors %}
+					<li style="color:red;">{{ error }}</li>
+					{% endfor %}
+				</div>
+
+
+
+				<div class="form-group">
+					{% for message in get_flashed_messages() %}  
+					<li style="color:red;">{{ message }}</li>  
+					{% endfor %}  
+				</div>
+
+
+				<div class="form-group">
+					{{form.submit(class="btn btn-primary btn-lg btn-block")}}
+				</div>
+
+		</div>
+	</form>
+	{% endblock %}

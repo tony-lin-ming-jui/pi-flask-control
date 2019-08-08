@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}門鎖控制{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{url_for('static',filename='css/time.css')}}">
+{% endblock %}
+
+{% block main %}
+
+<div class="form-container">
+    
+    <h1 class= "page-title">門鎖</h1> 
+        <hr/>
+
+        
+    <form class="form-horizontal" role="form" action="{{ url_for('door') }}" method="POST">
+
+    <button type="submit" name="action" value="on" class="btn btn-primary">開</button>
+    <button type="submit" name="action" value="off" class="btn btn-danger">關</button>
+<!--
+<td> <button type="submit" name="action" value="Delete" class="btn btn-danger  btn-sm">刪除用戶</button></td>
+<td> <button type="submit" name="action" value="Updateuser" class="btn btn-danger  btn-sm">修改用戶名</button></td>
+-->
+    </form>
+    </div>
+
+{% endblock %}
